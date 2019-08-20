@@ -4,13 +4,14 @@
 const terminal = require("terminal-kit").terminal;
 
 let inputArgs = process.argv;
+
 inputArgs.splice(0, 2);  //drop ['node', 'liri.js', ... ] and keep applicable arguments
 
-let isInputArgsCountValid = true;
-let inputCommand = null;
-let isInputCommandValid = false;
-let inputQuery = null;
-let isQueryValid = false;
+let isInputArgsCountValid;
+let inputCommand;
+let isInputCommandValid;
+let inputQuery;
+let isQueryValid;
 
 if (inputArgs.length === 0) {
 
@@ -18,7 +19,16 @@ if (inputArgs.length === 0) {
 }
 else {
 
+   checkCommand();
+}
+
+function checkCommand() {
+
+    isInputArgsCountValid = true;
     inputCommand = inputArgs[0].trim().toLowerCase();
+    isInputCommandValid = false;
+    inputQuery = null;
+    isQueryValid = false;
 
     switch (inputCommand) {
 
@@ -65,23 +75,27 @@ function printValidationErrorMsg() {
     if (!isInputArgsCountValid && !isInputCommandValid) {
 
         terminal.brightRed("   Missing input arguments, please refer to usage instructions above.");
-        terminal.nextLine(3);
-        process.exit(0);
+        exitProcess();
     }
 
     if (!isInputCommandValid) {
 
         terminal.brightRed("   Missing valid ").white("<command>").brightRed(" please refer to usage instructions above.");
-        terminal.nextLine(3);
-        process.exit(0);
+        exitProcess();
     }
 
     if (!isQueryValid && inputCommand !== "do-what-it-says") {
 
         terminal.brightRed("   Missing valid ").white("<query>").brightRed(" please refer to usage instructions above.");
-        terminal.nextLine(3);
-        process.exit(0);
+        exitProcess();
     }
+}
+
+function exitProcess() {
+
+    terminal.nextLine(3);
+    terminal.hideCursor(""); //restore cursor
+    process.exit(0);
 }
 
 module.exports = {
@@ -91,5 +105,7 @@ module.exports = {
     isInputCommandValid: isInputCommandValid,
     inputQuery: inputQuery,
     isQueryValid: isQueryValid,
-    printValidationErrorMsg: printValidationErrorMsg
+    checkCommand: checkCommand,
+    printValidationErrorMsg: printValidationErrorMsg,
+    exitProcess: exitProcess
 };

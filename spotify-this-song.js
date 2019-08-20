@@ -10,7 +10,6 @@ const keys = require("./keys.js");
 const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
 
-
 class Song {
 
     constructor(artists, track, previewURL, album) {

@@ -27,6 +27,8 @@ function printHeader() {
     terminal.brightCyan(" |   Example 2: ").white("node liri.js spotify-this-song \"I Want it That Way\"").brightCyan("            |\n");
     terminal.brightCyan(" |   Example 3: ").white("node liri.js spotify-this-song  I Want it That Way").brightCyan("             |\n");
     terminal.brightCyan(" |                                                                             |\n");
+    terminal.brightCyan(" |   LIRICommand.txt Example: ").white("movie-this,Top Gun").brightCyan("                               |\n");
+    terminal.brightCyan(" |                                                                             |\n");
     terminal.brightBlue(" ===============================================================================");
     terminal.nextLine(4);
 }

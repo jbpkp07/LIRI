@@ -2,10 +2,8 @@
 /* global require, module */
 
 const terminal = require("terminal-kit").terminal;
-
 // @ts-ignore
 const moment = require('moment');
-
 // @ts-ignore
 const axios = require('axios');
 
@@ -83,8 +81,9 @@ function getConcertThis(artist) {
             terminal.hideCursor(""); //restore cursor
         })
         .catch((error) => {
-   
-            terminal.brightRed("   Bands In Town API did not respond correctly. Try again later.");
+
+            terminal.brightRed("   Sorry, there are no concerts for the artist: ").white(artist + "\n\n");
+            terminal.brightRed("   OR...  Bands In Town API did not respond correctly. Try again later.");
             terminal("\n\n\n");
 
             terminal.hideCursor(""); //restore cursor
