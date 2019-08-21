@@ -19,10 +19,11 @@ Technologies used:  Node, Javascript, Axios, Spotify API, OMDB API, Bands In Tow
 I am the sole developer of this application.
 
 commands:
-           node liri.js concert-this <query>
-           node liri.js spotify-this-song <query>
-           node liri.js movie-this <query>
-           node liri.js do-what-it-says
+
+node liri.js concert-this <query>
+node liri.js spotify-this-song <query>
+node liri.js movie-this <query>
+node liri.js do-what-it-says
 
 Screenshots:
 
