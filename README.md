@@ -30,5 +30,5 @@ node liri.js do-what-it-says
 
 Screenshots:
 
-![Test Image 4](https://d3u03kk87rjfaq.cloudfront.net/wp-content/uploads/2019/05/24153729/disc-golf.jpg)
+![concert-this](https://github.com/jbpkp07/LIRI/blob/master/images/concert-this.png)
 
