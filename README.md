@@ -3,12 +3,18 @@
 This is a command-line application that runs a javascript program in the Node.js environment. It provides command line access to the Bands In Town, Spotify, and OMDB APIs to return information.
 
 **Bands In Town:**  Get latest concert information for your favorite music artist(s).
+
 **Spotify:**        Get information for song title searchs.
+
 **OMDB:**           Get information about a movie title search.
 
-You can clone this repository via command line (if you have Git installed) by typing:  **git clone https://github.com/jbpkp07/LIRI**
+You can clone this repository via command line (if you have Git installed) by typing:  
 
-If you already have Node.js installed, open your terminal, and browse to where you have cloned this Git repository and type:  **node liri.js**
+**git clone https://github.com/jbpkp07/LIRI**
+
+If you already have Node.js installed, open your terminal, and browse to where you have cloned this Git repository and type:  
+
+**node liri.js**
 
 If there are Node module dependencies that you are missing, please type `npm install` and it will reference the package.json file in this repository to automatically resolve those missing dependencies.
 
@@ -22,7 +28,7 @@ I am the sole developer of this application.
 
 
 
-### commands:
+### Commands:
 
 node liri.js concert-this <query>
   
