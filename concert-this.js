@@ -1,5 +1,5 @@
 "use strict";
-/* global require, module */
+/* global require, module, process */
 
 const terminal = require("terminal-kit").terminal;
 // @ts-ignore
@@ -65,6 +65,16 @@ function getConcertThis(artist) {
 
         .then((response) => {
 
+            if (response.data.length === 0) {
+
+                terminal.brightRed("   Sorry, there are no concerts for the artist: ").white(artist);
+
+                exitProcess();
+            }
+
+            terminal.white("   Results:\n");
+            terminal.white("   -----------------------------------------------------------------------------\n");
+
             for (let show of response.data) {
 
                 let nextShow = new Show(show.venue.name, show.venue.city, show.venue.region, show.venue.country, show.datetime);
@@ -72,22 +82,24 @@ function getConcertThis(artist) {
                 nextShow.printShow();
             }
 
-            if (response.data.length === 0) {
-
-                terminal.brightRed("   Sorry, there are no concerts for the artist: ").white(artist);
-                terminal("\n\n\n");
-            }
-       
-            terminal.hideCursor(""); //restore cursor
+            exitProcess();
         })
         .catch((error) => {
 
             terminal.brightRed("   Sorry, there are no concerts for the artist: ").white(artist + "\n\n");
             terminal.brightRed("   OR...  Bands In Town API did not respond correctly. Try again later.");
-            terminal("\n\n\n");
-
-            terminal.hideCursor(""); //restore cursor
+          
+            exitProcess();
         });
+}
+
+function exitProcess() {
+
+    terminal("\n\n\n");
+
+    terminal.hideCursor(""); //restore cursor
+
+    process.exit(0);
 }
 
 module.exports = {

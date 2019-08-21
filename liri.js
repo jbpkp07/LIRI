@@ -5,8 +5,6 @@ const terminal = require("terminal-kit").terminal;
 
 const printHeader = require("./printHeader.js");
 
-const inputArgs = require("./gatherArguments.js");
-
 const concertThis = require("./concert-this.js");
 
 const spotifyThisSong = require("./spotify-this-song.js");
@@ -15,25 +13,27 @@ const movieThis = require("./movie-this.js");
 
 const fs = require('fs');
 
+const Args = require("./Args.js");
+
 const liriCommandTXT = "./LIRICommand.txt";
 
-function executeCommand() {
+function executeCommand(args) {
 
-    switch (inputArgs.inputCommand) {
+    switch (args.command) {
 
-        case "concert-this":
-            let artist = inputArgs.inputQuery;
+        case Args.concertThis:
+            let artist = args.query;
             concertThis.getConcertThis(artist);
             break;
-        case "spotify-this-song":
-            let song = inputArgs.inputQuery;
+        case Args.spotifyThis:
+            let song = args.query;
             spotifyThisSong.getSpotifyThisSong(song);
             break;
-        case "movie-this":
-            let movieTitle = inputArgs.inputQuery;
+        case Args.movieThis:
+            let movieTitle = args.query;
             movieThis.getMovieThis(movieTitle);
             break;
-        case "do-what-it-says":
+        case Args.doWhatItSays:
             readCommandFromFile();
             break;
     }
@@ -44,16 +44,46 @@ function readCommandFromFile() {
     if (!fs.existsSync(liriCommandTXT)) {
 
         terminal.white("   LIRICommand.txt").brightRed(" file is missing. Please create this file in the same directory as this application.");
-        inputArgs.exitProcess();
+
+        exitProcess();
     }
 
-    const command = fs.readFileSync(liriCommandTXT, "utf8");
+    const argsFromFile = fs.readFileSync(liriCommandTXT, "utf8").trim().split(",");
 
-    console.log(command);
+    let fileArgs = new Args(argsFromFile);
+
+    fileArgs.printThisArgOBJ_Debug();
+
+    validateArgsAndExecuteCommand(fileArgs);
 }
 
+function validateArgsAndExecuteCommand(args) {
+
+    args.printValidationErrorMsg();
+
+    executeCommand(args);
+}
+
+function exitProcess() {
+
+    terminal("\n\n\n");
+
+    terminal.hideCursor(""); //restore cursor
+
+    process.exit(0);
+}
+
+
+
+//Start Program Here ----------------------------------------------------------
 printHeader();
 
-inputArgs.printValidationErrorMsg();
+let args = new Args();
 
-setTimeout(executeCommand, 1000);
+args.printThisArgOBJ_Debug();
+
+setTimeout(() => {
+    
+    validateArgsAndExecuteCommand(args);
+
+}, 1000);

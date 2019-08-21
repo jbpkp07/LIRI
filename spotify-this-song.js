@@ -1,5 +1,5 @@
 "use strict";
-/* global require, module */
+/* global require, module, process */
 
 const terminal = require("terminal-kit").terminal;
 
@@ -70,12 +70,19 @@ function getSpotifyThisSong(song) {
         if (error) {
 
             terminal.brightRed("   Spotify API did not respond correctly. Try again later.");
-            terminal("\n\n\n");
-
-            terminal.hideCursor(""); //restore cursor
-
-            return;
+           
+            exitProcess();
         }
+
+        if (data.tracks.items.length === 0) {
+
+            terminal.brightRed("   Sorry, there are no tracks found for: ").white(song);
+
+            exitProcess();
+        }
+
+        terminal.white("   Results:\n");
+        terminal.white("   -----------------------------------------------------------------------------\n");
 
         for (let track of data.tracks.items) {
 
@@ -84,14 +91,17 @@ function getSpotifyThisSong(song) {
             nextSong.printSong();
         }
 
-        if (data.tracks.items.length === 0) {
-
-            terminal.brightRed("   Sorry, there are no tracks found for: ").white(song);
-            terminal("\n\n\n");
-        }
-
-        terminal.hideCursor(""); //restore cursor
+        exitProcess();
     });
+}
+
+function exitProcess() {
+
+    terminal("\n\n\n");
+
+    terminal.hideCursor(""); //restore cursor
+
+    process.exit(0);
 }
 
 module.exports = {

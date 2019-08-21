@@ -8,7 +8,7 @@ function printHeader() {
     terminal.reset();
     terminal.clear();
     terminal.hideCursor();
-    terminal.nextLine(1);
+    terminal("\n");
     terminal.brightBlue(" ===============================================================================\n");
     terminal.brightCyan(" |                            LIRI Node Application                            |\n");
     terminal.brightCyan(" |                                    v1.0                                     |\n");
@@ -30,7 +30,7 @@ function printHeader() {
     terminal.brightCyan(" |   LIRICommand.txt Example: ").white("movie-this,Top Gun").brightCyan("                               |\n");
     terminal.brightCyan(" |                                                                             |\n");
     terminal.brightBlue(" ===============================================================================");
-    terminal.nextLine(4);
+    terminal("\n\n\n\n");
 }
 
 module.exports = printHeader;

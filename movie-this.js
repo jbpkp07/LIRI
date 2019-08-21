@@ -1,5 +1,5 @@
 "use strict";
-/* global require, module */
+/* global require, module, process */
 
 const terminal = require("terminal-kit").terminal;
 // @ts-ignore
@@ -64,11 +64,12 @@ function getMovieThis(movieTitle) {
             if (response.data.Error === "Movie not found!" || response.data.Response === "False") {
 
                 terminal.brightRed("   Sorry, OMDB was unable to find the movie title: ").white(movieTitle);
-                terminal("\n\n\n");
-                terminal.hideCursor(""); //restore cursor
-
-                return;
+               
+                exitProcess();
             }
+
+            terminal.white("   Results:\n");
+            terminal.white("   -----------------------------------------------------------------------------\n");
 
             const title = response.data.Title;
             const year = response.data.Year;
@@ -82,15 +83,23 @@ function getMovieThis(movieTitle) {
 
             movie.printMovie();
 
-            terminal.hideCursor(""); //restore cursor
+            exitProcess();
         })
         .catch((error) => {
    
             terminal.brightRed("   OMDB API did not respond correctly. Try again later.");
-            terminal("\n\n\n");
-
-            terminal.hideCursor(""); //restore cursor
+           
+            exitProcess();
         });
+}
+
+function exitProcess() {
+
+    terminal("\n\n\n");
+
+    terminal.hideCursor(""); //restore cursor
+
+    process.exit(0);
 }
 
 module.exports = {
