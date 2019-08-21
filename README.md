@@ -10,11 +10,11 @@ This is a command-line application that runs a javascript program in the Node.js
 
 You can clone this repository via command line (if you have Git installed) by typing:  
 
-**git clone https://github.com/jbpkp07/LIRI**
+`git clone https://github.com/jbpkp07/LIRI`
 
 If you already have Node.js installed, open your terminal, and browse to where you have cloned this Git repository and type:  
 
-**node liri.js**
+`node liri.js`
 
 If there are Node module dependencies that you are missing, please type `npm install` and it will reference the package.json file in this repository to automatically resolve those missing dependencies.
 
@@ -30,13 +30,13 @@ I am the sole developer of this application.
 
 ### Commands:
 
-node liri.js concert-this <query>
+* node liri.js concert-this <query>
   
-node liri.js spotify-this-song <query>
+* node liri.js spotify-this-song <query>
   
-node liri.js movie-this <query>
+* node liri.js movie-this <query>
   
-node liri.js do-what-it-says
+* node liri.js do-what-it-says
 
 
 
