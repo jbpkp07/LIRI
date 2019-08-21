@@ -16,7 +16,11 @@ The main entry point for the application is liri.js, and the other auxillary fil
 
 Technologies used:  Node, Javascript, Axios, Spotify API, OMDB API, Bands In Town API, NPM, terminal-kit
 
+There is also strict validation for the commands and queries entered, with appropriate error messages if the input is invalid.
+
 I am the sole developer of this application.
+
+
 
 commands:
 
@@ -28,7 +32,15 @@ node liri.js movie-this <query>
   
 node liri.js do-what-it-says
 
+
+
 Screenshots:
 
 ![concert-this](https://github.com/jbpkp07/LIRI/blob/master/images/concert-this.png)
+
+![spotify-this-song](https://github.com/jbpkp07/LIRI/blob/master/images/spotify-this-song.png)
+
+![movie-this](https://github.com/jbpkp07/LIRI/blob/master/images/movie-this.png)
+
+![do-what-it-says](https://github.com/jbpkp07/LIRI/blob/master/images/do-what-it-says.png)
 
